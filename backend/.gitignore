@@ -1,0 +1,3 @@
+# ignoring image past
+./node_modules
+.env
