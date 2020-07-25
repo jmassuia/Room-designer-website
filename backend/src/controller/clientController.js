@@ -3,7 +3,7 @@ const transporter = require('../services/nodeMailer');
 
 module.exports={
     async store(req,res){
-        const{name,email,phone,fullDate:date,message} = req.body;
+        const{name,email,phone,fullDate:date,message, tag, color, favoritePlace, eventStyle} = req.body;
 
         const [client] = await connection('clients').insert({
             name,
@@ -23,7 +23,11 @@ module.exports={
                     name:name,
                     mail:email,
                     phone:phone,
-                    message:message
+                    message:message,
+                    tag:tag,
+                    color:color,
+                    favoritePlace:favoritePlace,
+                    eventStyle:eventStyle
                 }
         }
         
