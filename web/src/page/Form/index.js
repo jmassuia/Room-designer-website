@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 
 import {Form, Col, Button, Spinner, Alert, OverlayTrigger,Popover} from 'react-bootstrap';
 
+import {useHistory} from 'react-router-dom';
+
 import './styles.css';
 
 import api from '../../api';
@@ -23,17 +25,30 @@ export default function UserForm(){
     const [alerts, setAlerts ] = useState(false);
     const [showQuiz,setShowQuiz] = useState(false);
 
+    const history = useHistory();
+    let {tag, color, favoritePlace, eventStyle} ='';
+
 
     function handleSubmit(e){
-        e.preventDefault();
-        
-       const day  = new Date().getDate();
-       const year =  new Date().getFullYear();
-       const month = new Date().getMonth() + 1; 
+        e.preventDefault();       
+       
+        const day  = new Date().getDate();
+        const year =  new Date().getFullYear();
+        const month = new Date().getMonth() + 1; 
 
-       const fullDate= String(day + '/' + month + '/' + year);
+        const fullDate= String(day + '/' + month + '/' + year);
 
-       const data={
+        const quizResult = localStorage.getItem('quizResult');
+
+        if(quizResult!=null){
+            const result = JSON.parse(quizResult);
+            tag=result.tag;
+            color=result.color;
+            favoritePlace=result.favoritePlace;
+            eventStyle=result.eventStyle;
+        }
+
+        const data={
             name,
             lastname,
             email,
@@ -42,21 +57,29 @@ export default function UserForm(){
             state,
             phone,
             fullDate,
-            message
+            message,
+            tag,
+            color,
+            favoritePlace,
+            eventStyle
         }
 
         try{
+            setLoading(true);
             api.post('/sendMail',data)
             .then(res =>{
+                setLoading(false);
+                history.push('/');
                 console.log(res);
             }).catch(err =>{
-                setAlerts(true);
                 setLoading(false);
+                setAlerts(true);
                 console.log(err);
             });
-            setLoading(true);
+            localStorage.clear();
         }
         catch{
+            setAlerts(true);
             console.log("Something doesn't went well");
         }
     }

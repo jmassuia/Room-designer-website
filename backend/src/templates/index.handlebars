@@ -28,11 +28,16 @@
                 font-size: 16px;
                 font-weight: normal;
             }
+            
+            div.message{
+                padding: 0px 40px 0px 40px;
+            }
             div.client{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0px 20px 0px 20px;
+                padding: 0px 40px 0px 40px;
+                flex-wrap: wrap;
             }
             label{
                 color: #222;
@@ -42,6 +47,13 @@
                 background-color:rgb(255,255,255);
                 margin-left: 15px;
                 border-radius: 4px;
+            }
+            div.quiz{
+                padding: 0px 40px 0px 40px;
+                margin-bottom: 100px;
+            }
+            div.quiz h4{
+                font-weight: bold;
             }
             footer{
                 text-align: center;
@@ -74,9 +86,22 @@
                 <label>Telefone:</label>
                 <p>{{phone}}</p>
             </div>
-            <label>Mensagem:</label>
-            <h5>{{message}}</h5>
-            <div class="quiz"></div>     
+            <div class="message">
+                <label>Mensagem:</label>
+                <h5>{{message}}</h5>
+            </div>
+            <div class="quiz">
+                <h4>Resultado do quiz</h4>
+                <hr/>
+                <label>Tag escolhida:</label>
+                <p>{{tag}}</p>
+                <label>Lugar preferido da casa:</label>
+                <p>{{favoritePlace}}</p>
+                <label>Cor preferida:</label>
+                <p>{{color}}</p>
+                <label>Tipo de evento preferido:</label>
+                <p>{{eventStyle}}</p>
+            </div>     
             <footer>
                 <p>© todos os direitos reservados - Renouveler</p>
             </footer> 

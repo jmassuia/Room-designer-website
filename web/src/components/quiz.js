@@ -31,8 +31,6 @@ export default function Quiz(){
         }
         /* To store objects in localStorage is required to serialize it as JSON structure*/
         localStorage.setItem('quizResult',JSON.stringify(quizResult));
-        /*To retrieve it, it's required to use the parse function*/
-        console.log(JSON.parse(localStorage.getItem('quizResult')));
     }
     const handleChange =(color) =>{
         setColor(color);
@@ -68,7 +66,7 @@ export default function Quiz(){
                           onClick={()=>setFavoritePlace('Cozinha')}
                         >Cozinha</Button>
                         <Button className="default-button" variant="outline-none"
-                          onClick={()=>setFavoritePlace('Quarta')}
+                          onClick={()=>setFavoritePlace('Quarto')}
                         >Quarto</Button>
                         <Button className="default-button" variant="outline-none"
                           onClick={()=>setFavoritePlace('Sala')}
